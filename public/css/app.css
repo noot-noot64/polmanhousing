@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 /*body{*/
 /*    background-color: #313d52;*/
 /*}*/
@@ -12,7 +13,6 @@
 /*
     DEMO STYLE
 */
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 .privacy-link{
     color: #6d7fcc;
@@ -281,3 +281,4 @@ ul.CTAs a {
     }
 
 }
+
