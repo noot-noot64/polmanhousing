@@ -20,7 +20,7 @@
     <!-- My CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
 
-    <title>Energielabels</title>
+    <title>Polman Housings</title>
 </head>
 
 <body>
@@ -30,68 +30,21 @@
     <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <a href="{{route('home')}}"><img src="{{asset('storage/img/polman.png')}}" class="img-fluid"></a>
+            <a href="{{route('home')}}"><img src="{{asset('storage/img/logo-eenvoud.png')}}" class="img-fluid"></a>
         </div>
 
         <ul class="list-unstyled components">
             <li class="{{ (request()->is('home')) ? 'active' : '' }} ">
                 <a href="{{route('home')}}">
-                    <i class="fas fa-home"></i>
-                    Home
+                    <i class="fa-solid fa-play"></i>
+                    Start
                 </a>
             </li>
-            <li class="{{ (request()->is('label')) ? 'active' : '' }}">
-                <a href="{{route('label')}}">
-                    <i class="fa-solid fa-leaf"></i>
-                    Energielabel
+            <li class="{{ (request()->is('housing')) ? 'active' : '' }}">
+                <a href="{{route('housing')}}">
+                    <i class="fa-solid fa-house-chimney"></i>
+                    Woningen
                 </a>
-            </li>
-            <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}">
-                <a href="{{route('about')}}">
-                    <i class="fa-solid fa-user"></i>
-                    About Me
-                </a>
-            </li>
-            <li class="nav-item {{ (request()->is('contact')) ? 'active' : '' }}">
-                <a href="{{route('contact')}}">
-                    <i class="fa-solid fa-envelope"></i>
-                    Contact
-                </a>
-            </li>
-{{--            <li class="nav-item {{ (request()->is('privacy')) ? 'active' : '' }}">--}}
-{{--                <a href="{{route('privacy')}}">--}}
-{{--                    <i class="fa-solid fa-key"></i>--}}
-{{--                    Privacybeleid--}}
-{{--                </a>--}}
-{{--            </li>--}}
-            <li class="nav-item {{ (request()->is('privacy')) ? 'active' : '' }}">
-                <a href="#privacySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fa-solid fa-key"></i>
-                    Privacybeleid
-                </a>
-                <ul class="collapse list-unstyled" id="privacySubmenu">
-                    <li>
-                        <a href="{{route('privacy')}}#data-collected">Data collected</a>
-                    </li>
-                    <li>
-                        <a href="{{route('privacy')}}#embedded-content">Embedded content</a>
-                    </li
-                    ><li>
-                        <a href="{{route('privacy')}}#your-data">Your data</a>
-                    </li>
-                    <li>
-                        <a href="{{route('privacy')}}#third-party">Third party access</a>
-                    </li>
-                    <li>
-                        <a href="{{route('privacy')}}#data-retaining">Data retaining</a>
-                    </li>
-                    <li>
-                        <a href="{{route('privacy')}}#security-measures">Security measures</a>
-                    </li>
-                    <li>
-                        <a href="{{route('privacy')}}#amendments">Amendments</a>
-                    </li>
-                </ul>
             </li>
         </ul>
     </nav>
@@ -116,17 +69,8 @@
                         <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}">
                             <a class="nav-link" href="{{url('/')}}">Home</a>
                         </li>
-                        <li class="nav-item {{ (request()->is('label')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('label')}}">Energielabel</a>
-                        </li>
-                        <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}">
-                                <a class="nav-link" href="{{route('about')}}">About Me</a>
-                        </li>
-                        <li class="nav-item {{ (request()->is('contact')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('contact')}}">Contact</a>
-                        </li>
-                        <li class="nav-item {{ (request()->is('privacy')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('privacy')}}">Privacybeleid</a>
+                        <li class="nav-item {{ (request()->is('housing')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('housing')}}">Woningen</a>
                         </li>
                     </ul>
                 </div>
