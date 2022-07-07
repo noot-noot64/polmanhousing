@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('installtion_conditions', function (Blueprint $table) {
+        Schema::table('installation_conditions', function (Blueprint $table) {
             $table->text('comment');
         });
     }
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('installtion_conditions', function (Blueprint $table) {
+        Schema::table('installation_conditions', function (Blueprint $table) {
             $table->dropColumn('comment');
         });
     }

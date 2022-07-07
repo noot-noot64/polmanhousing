@@ -15,7 +15,13 @@ class InteriorSeeder extends Seeder
      */
     public function run()
     {
-        $interiors = ['Uitstekend', 'Goed', 'Redelijk', 'Matig', 'Slecht', 'Zeer slecht', 'Nader onderzoek', 'Niet te inspecteren'];
+        $interiors =
+        [
+            //Interieur - algemeen
+            'Wandafwerking(behang of stucwerk)', 'Plafondafwerking(stucwerk)', 'Schilderwerk', 'Binnendeuren en kozijnen(O-ABC)',
+            'Binnenwerk buitenkozijnen(O-ABC)', 'Trap 1ste verd.(incl. leuning en traprek)', 'Trap 2de verd.(incl. leuning en traprek)',
+            'Vlisotrap(vaste zoldertrap)'
+        ];
         foreach ($interiors as $it){
             DB::table('interiors')->insert([
                 'name' => $it

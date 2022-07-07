@@ -18,7 +18,7 @@ class SuperStructureSeeder extends Seeder
         $superstructures =
         [
             //Constructieve binnenwanden
-            'Begane grond(cb)', '1ste verdieping(cb)', '2ste verdieping(zolder)(cb)', '3de verdieping(cb)', 'Begane grond(ls)',
+            'Begane grond(cb)', '1ste verdieping(cb)', '2de verdieping(zolder)(cb)', '3de verdieping(cb)', 'Begane grond(ls)',
             //Lichte scheidingswanden
             '1ste verdieping(ls)', '2de verdieping(ls)', '3de verdieping(ls)', 'Binnendeurkozijnen(ls)', 'Binnendeuren(ls)',
             //Verdiepings vloeren - 1ste verdieping

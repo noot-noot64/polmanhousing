@@ -15,7 +15,11 @@ class ExternSeeder extends Seeder
      */
     public function run()
     {
-        $externs = ['Voorpaden', 'Achterpaden', 'Terras achterzijde', 'Tuininrichting', 'Boomonderhoud', 'Struiken en Hagen', 'Hekwerken', 'Buitenkraan', 'Buitenriool tot gemeenteaansluiting'];
+        $externs =
+        [
+            'Voorpaden', 'Achterpaden', 'Terras achterzijde', 'Tuininrichting', 'Boomonderhoud',
+            'Struiken en Hagen', 'Hekwerken', 'Buitenkraan', 'Buitenriool tot gemeenteaansluiting'
+        ];
         foreach ($externs as $e){
             DB::table('externs')->insert([
                 'name' => $e
