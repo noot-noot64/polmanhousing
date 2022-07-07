@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +19,7 @@ class DatabaseSeeder extends Seeder
        ([
            ConditionSeeder::class ,HouseSeeder::class, ExternSeeder::class, SubstructureSeeder::class,
            SuperStructureSeeder::class, FacadeSeeder::class, InteriorSeeder::class, SanitarySeeder::class,
-           InstallationSeeder::class
+           InstallationSeeder::class, UserSeeder::class
        ]);
     }
 }

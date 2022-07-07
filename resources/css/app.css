@@ -1,17 +1,6 @@
-/*body{*/
-/*    background-color: #313d52;*/
-/*}*/
-/*.label-input{*/
-/*    height: 40px;*/
-/*    width: 33%;*/
-/*}*/
-/*.polman-logo{*/
-/*    height: 100px;*/
-/*}*/
 
-/*
-    DEMO STYLE
-*/
+@import "guest.css";
+
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 .privacy-link{

@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Session\Session;
+use function redirect;
+use function view;
 
 
 class LoginController extends Controller
@@ -19,21 +20,15 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-            $user = User::all()->where('email', $validated['email'])->first();
-            if(!empty($user['deleted_at'])){
-                //singed niet in
-                return redirect()->back()->withErrors(['status' =>'Login gegevens incorrect']);
-            }else{
-                //singed wel in
-                $request->session()->regenerate();
-                return redirect()->route('dashboard.home')->with(['message' => ['message' => 'Succesvol ingelogd', 'type' => 'success']]);
-            }
+            //signed wel in
+            $request->session()->regenerate();
+            return redirect()->route('admin.dashboard')->with(['message' => ['message' => 'Succesvol ingelogd', 'type' => 'success']]);
         }
 
         return redirect()->back()->withErrors(['status' =>'Login gegevens incorrect']);

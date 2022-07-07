@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/guest.css" rel="stylesheet">
 
     <!-- Font Awesome JS-->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -34,36 +34,18 @@
         </div>
 
         <ul class="list-unstyled components">
-            <li class="{{ (request()->is('admin.dashboard')) ? 'active' : '' }} ">
-                <a href="{{route('admin.dashboard')}}">
+            <li class="{{ (request()->is('home')) ? 'active' : '' }} ">
+                <a href="{{route('home')}}">
                     <i class="fa-solid fa-play"></i>
                     Start
                 </a>
             </li>
-            <li class="{{ (request()->is('admin.housing')) ? 'active' : '' }}">
-                <a href="{{route('admin.housing')}}">
+            <li class="{{ (request()->is('login')) ? 'active' : '' }}">
+                <a href="{{route('login')}}">
                     <i class="fa-solid fa-house-chimney"></i>
-                    Woningen
+                    Login
                 </a>
             </li>
-            <li class="{{ (request()->is('admin.renters')) ? 'active' : '' }}">
-                <a href="{{route('admin.renters')}}">
-                    <i class="fa-solid fa-user"></i>
-                    Huurders
-                </a>
-            </li>
-
-            <li class="{{ (request()->is('auth.logout')) ? 'active' : '' }}">
-                <a href="{{ route('auth.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Uitloggen
-                </a>
-
-                <form id="logout-form" action="{{ route('auth.logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </li>
-
         </ul>
     </nav>
 
@@ -84,15 +66,11 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item {{ (request()->is('admin.dashboard')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{url('admin.dashboard')}}">Home</a>
+                        <li class="nav-item {{ (request()->is('home')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{url('home')}}">Home</a>
                         </li>
-                        <li class="nav-item {{ (request()->is('admin.housing')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('admin.housing')}}">Woningen</a>
-                        </li>
-
-                        <li class="nav-item {{ (request()->is('admin.renters')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('admin.renters')}}">Huurders</a>
+                        <li class="nav-item {{ (request()->is('login')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('login')}}">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -101,7 +79,7 @@
 
         @yield('body')
 
-        </div>
+    </div>
 </div>
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
