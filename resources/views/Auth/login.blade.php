@@ -1,7 +1,35 @@
 @extends('layouts.guest')
 
 @section('body')
+    @if($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <p><strong>Oops iets is verkeerd gegaan</strong></p>
+            <ul>
+                @foreach ($errors->all() as $error)
 
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+
+    @if(session('success'))
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="alert alert-success">{{session('success')}}</div>
+    @endif
+
+    @if(session('error'))
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="alert alert-danger">{{session('error')}}</div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -18,4 +46,5 @@
             </div>
         </div>
     </div>
+
 @endsection

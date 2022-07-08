@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\users;
 
+use App\Models\Renter;
 use Illuminate\Http\Request;
 
 class RenterController extends Controller
@@ -13,6 +14,16 @@ class RenterController extends Controller
     }
 
     public function index(){
-        return view('admin\renters');
+        $renters = Renter::all();
+        return view('admin/renters/renters')->with(['renters' => $renters]);
+    }
+    public function create(){
+
+    }
+    public function edit(){
+
+    }
+    public function destroy(){
+
     }
 }

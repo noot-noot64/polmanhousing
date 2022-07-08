@@ -3,6 +3,15 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
+
+.renters{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.housings{
+    padding-left: 5%;
+    padding-right: 5%;
+}
 .privacy-link{
     color: #6d7fcc;
 }

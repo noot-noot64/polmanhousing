@@ -14,7 +14,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        return view('Auth.login');
     }
 
     public function login(Request $request)
@@ -28,10 +28,10 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             //signed wel in
             $request->session()->regenerate();
-            return redirect()->route('admin.dashboard')->with(['message' => ['message' => 'Succesvol ingelogd', 'type' => 'success']]);
+            return redirect()->route('admin.dashboard')->with('success','Succesvol ingelogd!');
+        }else{
+            return redirect()->back()->with('error','Incorrecte gegevens!');
         }
-
-        return redirect()->back()->withErrors(['status' =>'Login gegevens incorrect']);
     }
 
     public function logout(Request $request)
@@ -42,6 +42,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('login');
     }
 }

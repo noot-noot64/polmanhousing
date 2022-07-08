@@ -18,4 +18,8 @@ class House extends Model
     {
         return $this->belongsTo(Conditions::class, 'condition_id');
     }
+    public function houses(): \Illuminate\Database\Eloquent\Relations\hasOne
+    {
+        return $this->hasOne(Renter::class);
+    }
 }

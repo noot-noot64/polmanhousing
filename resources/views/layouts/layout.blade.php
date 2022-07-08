@@ -30,7 +30,7 @@
     <!-- Sidebar Holder -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <a href="{{route('home')}}"><img src="{{asset('storage/img/logo-eenvoud.png')}}" class="img-fluid"></a>
+            <a href="{{route('admin.dashboard')}}"><img src="{{asset('storage/img/logo-eenvoud.png')}}" class="img-fluid"></a>
         </div>
 
         <ul class="list-unstyled components">
@@ -40,14 +40,14 @@
                     Start
                 </a>
             </li>
-            <li class="{{ (request()->is('admin.housing')) ? 'active' : '' }}">
-                <a href="{{route('admin.housing')}}">
+            <li class="{{ (request()->is('admin.housing.index')) ? 'active' : '' }}">
+                <a href="{{route('admin.housing.index')}}">
                     <i class="fa-solid fa-house-chimney"></i>
                     Woningen
                 </a>
             </li>
-            <li class="{{ (request()->is('admin.renters')) ? 'active' : '' }}">
-                <a href="{{route('admin.renters')}}">
+            <li class="{{ (request()->is('admin.renters.index')) ? 'active' : '' }}">
+                <a href="{{route('admin.renters.index')}}">
                     <i class="fa-solid fa-user"></i>
                     Huurders
                 </a>
@@ -87,12 +87,12 @@
                         <li class="nav-item {{ (request()->is('admin.dashboard')) ? 'active' : '' }}">
                             <a class="nav-link" href="{{url('admin.dashboard')}}">Home</a>
                         </li>
-                        <li class="nav-item {{ (request()->is('admin.housing')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('admin.housing')}}">Woningen</a>
+                        <li class="nav-item {{ (request()->is('admin.housing.index')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('admin.housing.index')}}">Woningen</a>
                         </li>
 
-                        <li class="nav-item {{ (request()->is('admin.renters')) ? 'active' : '' }}">
-                            <a class="nav-link" href="{{route('admin.renters')}}">Huurders</a>
+                        <li class="nav-item {{ (request()->is('admin.renters.index')) ? 'active' : '' }}">
+                            <a class="nav-link" href="{{route('admin.renters.index')}}">Huurders</a>
                         </li>
                     </ul>
                 </div>

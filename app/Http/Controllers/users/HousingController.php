@@ -14,8 +14,16 @@ class HousingController extends Controller
     }
 
     public function index(){
-        $house = House::all()->first()->conditions()->first();
-        //dd($house);
-        return view('admin\housing');
+        $housing = House::all();
+        return view('admin/housing/housing')->with(['houses' => $housing]);
+    }
+    public function create(){
+
+    }
+    public function edit(){
+
+    }
+    public function destroy(){
+
     }
 }

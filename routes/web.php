@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\users\DashboardController;
+use App\Http\Controllers\users\HomeController;
+use App\Http\Controllers\users\HousingController;
+use App\Http\Controllers\users\RenterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +27,27 @@ Route::name('auth.')->prefix('auth/')->group(function (){
 });
 
 Route::name('admin.')->prefix('admin/')->group(function (){
+
+    //admin dashboard
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('housing', [App\Http\Controllers\users\HousingController::class, 'index'])->name('housing');
-    Route::get('renters', [\App\Http\Controllers\users\RenterController::class, 'index'])->name('renters');
+
+    //housings crud
+    Route::name('housing.')->prefix('housing/')->group(function (){
+        Route::get('/', [HousingController::class, 'index'])->name('index');
+        Route::get('/store', [HousingController::class, 'create'])->name('create');
+        Route::get('/edit/{housing}', [HousingController::class, 'edit'])->name('edit');
+        Route::get('/destroy/{housing}', [HousingController::class, 'destroy'])->name('destroy');
+    });
+
+    //housings crud
+    Route::name('renters.')->prefix('renters/')->group(function (){
+        Route::get('/', [RenterController::class, 'index'])->name('index');
+        Route::get('/create', [RenterController::class, 'create'])->name('create');
+        Route::get('/store', [RenterController::class, 'store'])->name('store');
+        Route::get('/edit', [RenterController::class, 'edit'])->name('edit');
+        Route::get('/edit', [RenterController::class, 'edit'])->name('edit');
+        Route::get('/destroy', [RenterController::class, 'destroy'])->name('destroy');
+    });
 });
 
 
@@ -35,4 +56,4 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('home', [App\Http\Controllers\users\HomeController::class, 'index'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->name('home');
