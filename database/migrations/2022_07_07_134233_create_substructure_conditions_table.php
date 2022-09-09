@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('substructure_id');
             $table->integer('condition_id');
+            $table->integer('house_id');
             $table->timestamps();
         });
     }

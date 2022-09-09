@@ -16,4 +16,13 @@ class Conditions extends Model
     {
         return $this->hasOne(House::class);
     }
+
+    public function house()
+    {
+        return $this->belongsToMany('houses', 'installation_conditions')->withPivot('installation_id');
+    }
+    public function installation()
+    {
+        return $this->belongsToMany('installation', 'installation_conditions')->withPivot('house_id');
+    }
 }

@@ -22,4 +22,16 @@ class House extends Model
     {
         return $this->hasOne(Renter::class);
     }
+
+
+    public function installation()
+    {
+        return $this->belongsToMany('installations', 'installation_conditions')->withPivot('condition_id');
+    }
+     public function condition()
+    {
+        return $this->belongsToMany('conditions', 'installation_conditions')->withPivot('installation_id');
+    }
+
+
 }

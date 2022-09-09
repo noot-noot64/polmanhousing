@@ -12,6 +12,9 @@
             <th scope="col"><strong>Oppervlakte</strong></th>
             <th scope="col"><strong>Toegangbaar vanaf tuin?</strong></th>
             <th scope="col"><strong>Conditie</strong></th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +25,9 @@
                 <td>{{$house['surface']}}mm²</td>
                 <td>@if($house['accessible'] == 1) Ja @else Nee @endif</td>
                 <td>{{$house->conditions()->first()->name}}</td>
+                <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td>{{$first_version_id = $installtion->first()->pivot->installtion_id}}</td>
+                <td></td>
             </tr>
         @endforeach
         </tbody>
