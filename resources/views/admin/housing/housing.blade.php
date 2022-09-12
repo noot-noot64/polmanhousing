@@ -26,7 +26,7 @@
                 <td>@if($house['accessible'] == 1) Ja @else Nee @endif</td>
                 <td>{{$house->conditions()->first()->name}}</td>
                 <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
-                <td>{{$first_version_id = $installtion->first()->pivot->installtion_id}}</td>
+                <td>{{$house->condition_installation()->conditions}}</td>
                 <td></td>
             </tr>
         @endforeach

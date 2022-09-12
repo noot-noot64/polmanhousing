@@ -4,18 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Installations extends Model
 {
     use HasFactory;
     protected $table = 'installations';
 
-    public function house()
+    public function condition_installation() :hasOne
     {
-        return $this->belongsToMany('houses', 'installation_conditions')->withPivot('condition_id');
-    }
-    public function condition()
-    {
-        return $this->belongsToMany('conditions', 'installation_conditions')->withPivot('house_id');
+        return $this->hasOne(ConditionInstallation::class, 'installation_id');
     }
 }

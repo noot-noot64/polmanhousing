@@ -18,20 +18,14 @@ class House extends Model
     {
         return $this->belongsTo(Conditions::class, 'condition_id');
     }
-    public function houses(): \Illuminate\Database\Eloquent\Relations\hasOne
+    public function renters(): hasOne
     {
         return $this->hasOne(Renter::class);
     }
 
-
-    public function installation()
+    public function condition_installation() :hasOne
     {
-        return $this->belongsToMany('installations', 'installation_conditions')->withPivot('condition_id');
+        return $this->hasOne(ConditionInstallation::class, 'house_id');
     }
-     public function condition()
-    {
-        return $this->belongsToMany('conditions', 'installation_conditions')->withPivot('installation_id');
-    }
-
 
 }

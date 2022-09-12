@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\users;
 
+use App\Models\ConditionInstallation;
+use App\Models\Conditions;
 use App\Models\House;
+use App\Models\Installations;
 use Illuminate\Http\Request;
 
 class HousingController extends Controller
@@ -15,6 +18,7 @@ class HousingController extends Controller
 
     public function index(){
         $housing = House::all();
+
         return view('admin/housing/housing')->with(['houses' => $housing]);
     }
     public function create(){
