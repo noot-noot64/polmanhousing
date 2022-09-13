@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class ConditionInstallation extends Model
+class ConditionExtern extends Model
 {
     use HasFactory;
-    protected $table = 'installation_conditions';
+    protected $table = 'extern_conditions';
 
     protected $fillable = [
         'id',
-        'installation_id',
+        'extern_id',
         'condition_id',
         'house_id',
         'comment',
@@ -22,14 +22,14 @@ class ConditionInstallation extends Model
 
     public function conditions() :hasOne
     {
-        return $this->hasOne(Conditions::class, 'id');
+        return $this->hasOne(Conditions::class, 'condition_id');
     }
     public function houses() :belongsTo
     {
         return $this->belongsTo(House::class, 'house_id');
     }
-    public function installations() :belongsTo
+    public function externs() :belongsTo
     {
-        return $this->belongsTo(Installations::class, 'id');
+        return $this->belongsTo(Externs::class, 'extern_id');
     }
 }

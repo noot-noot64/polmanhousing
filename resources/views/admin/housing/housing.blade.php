@@ -19,15 +19,16 @@
         </thead>
         <tbody>
         @foreach($houses as $house)
+
             <tr>
                 <td>{{$house['address']}}</td>
                 <td>{{$house['buildyear']}}</td>
                 <td>{{$house['surface']}}mm²</td>
                 <td>@if($house['accessible'] == 1) Ja @else Nee @endif</td>
                 <td>{{$house->conditions()->first()->name}}</td>
-                <td><a href=""><i class="fa-solid fa-pen-to-square"></i></a></td>
-                <td>{{$house->condition_installation()->conditions}}</td>
-                <td></td>
+                <td><a href="housing/edit/{{$house['id']}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-gear"></i></a></td>
             </tr>
         @endforeach
         </tbody>

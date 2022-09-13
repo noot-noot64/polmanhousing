@@ -171,7 +171,14 @@ a.socialIcon:hover,
     padding: 9px 15px;
     border-radius: 100px;
 }
+.expand-comment{
+    background-color: lightgrey !important;
 
+}
+.expand-comment:active{
+    background-color: lightgrey !important;
+    color: grey !important;
+}
 #myBtn:hover {
     transition: 0.8s;
     background-color: #485487;

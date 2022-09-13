@@ -22,4 +22,8 @@ class Conditions extends Model
     {
         return $this->hasOne(ConditionInstallation::class, 'condition_id');
     }
+    public function condition_extern() :hasOne
+    {
+        return $this->hasOne(ConditionExtern::class, 'extern_id');
+    }
 }

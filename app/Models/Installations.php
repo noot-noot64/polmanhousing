@@ -12,7 +12,7 @@ class Installations extends Model
     use HasFactory;
     protected $table = 'installations';
 
-    public function condition_installation() :hasOne
+    public function conditionInstallation() :hasOne
     {
         return $this->hasOne(ConditionInstallation::class, 'installation_id');
     }

@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class ConditionInstallation extends Model
+class ConditionInterior extends Model
 {
     use HasFactory;
-    protected $table = 'installation_conditions';
+    protected $table = 'interior_conditions';
 
     protected $fillable = [
         'id',
-        'installation_id',
+        'interior_id',
         'condition_id',
         'house_id',
         'comment',
@@ -28,8 +28,8 @@ class ConditionInstallation extends Model
     {
         return $this->belongsTo(House::class, 'house_id');
     }
-    public function installations() :belongsTo
+    public function interiors() :belongsTo
     {
-        return $this->belongsTo(Installations::class, 'id');
+        return $this->belongsTo(Interiors::class, 'id');
     }
 }

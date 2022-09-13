@@ -34,8 +34,11 @@ Route::name('admin.')->prefix('admin/')->group(function (){
     //housings crud
     Route::name('housing.')->prefix('housing/')->group(function (){
         Route::get('/', [HousingController::class, 'index'])->name('index');
-        Route::get('/store', [HousingController::class, 'create'])->name('create');
+        Route::get('/show/{housing}', [HousingController::class, 'show'])->name('show');
+        Route::get('/create', [HousingController::class, 'create'])->name('create');
+        Route::get('/store', [HousingController::class, 'store'])->name('store');
         Route::get('/edit/{housing}', [HousingController::class, 'edit'])->name('edit');
+        Route::get('/update/{housing}', [HousingController::class, 'update'])->name('update');
         Route::get('/destroy/{housing}', [HousingController::class, 'destroy'])->name('destroy');
     });
 

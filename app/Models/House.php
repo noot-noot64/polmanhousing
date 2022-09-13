@@ -23,9 +23,33 @@ class House extends Model
         return $this->hasOne(Renter::class);
     }
 
-    public function condition_installation() :hasOne
+    public function conditionInstallation() :hasOne
     {
         return $this->hasOne(ConditionInstallation::class, 'house_id');
+    }
+    public function conditionExtern() :hasOne
+    {
+        return $this->hasOne(ConditionExtern::class, 'house_id');
+    }
+    public function conditionFacade() :hasOne
+    {
+        return $this->hasOne(ConditionFacade::class, 'house_id');
+    }
+    public function conditionInterior() :hasOne
+    {
+        return $this->hasOne(ConditionInterior::class, 'house_id');
+    }
+    public function conditionSanitary() :hasOne
+    {
+        return $this->hasOne(ConditionSanitary::class, 'house_id');
+    }
+    public function conditionSubstructure() :hasOne
+    {
+        return $this->hasOne(ConditionSubstructure::class, 'house_id');
+    }
+    public function conditionSuperstructure() :hasOne
+    {
+        return $this->hasOne(ConditionSuperstructure::class, 'house_id');
     }
 
 }
