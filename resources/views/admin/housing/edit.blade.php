@@ -2,38 +2,13 @@
 
 @section('body')
 
-
-<h2>Bewerk gebruiker</h2>
+{{--{{dd($house->conditionExtern()->first())}}--}}
+<h2>Bewerk huis</h2>
+<h6 style="color: grey">{{$house['address']}}</h6>
 <hr>
 
-    <form method="get" action="housing/update/{{$house['id']}}">
-
-{{--        <a class="expand-comment" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
-{{--            uitvouwen--}}
-{{--        </a>--}}
-{{--        <div class="collapse" id="collapseExample">--}}
-{{--            <div>--}}
-{{--                <textarea class="form-control form-control-sm-10" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%"></textarea>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-
-{{--            <div class="form-group row">--}}
-{{--                <label class="col-sm-2 col-form-label">Terras achterzijde</label>--}}
-{{--                <select class="form-control form-control-sm-10" style="width: 30%">--}}
-{{--                    @foreach($conditions as $condition)--}}
-{{--                        <option>{{$condition->name}}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select><br>--}}
-{{--                <a class="expand-comment" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">--}}
-{{--                    uitvouwen--}}
-{{--                </a>--}}
-{{--                <div class="collapse" id="collapseExample">--}}
-{{--                    <div>--}}
-{{--                        <textarea class="form-control form-control-sm-10" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%"></textarea>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--           </div>--}}
-
+    <form method="get" action="{{route('admin.housing.update', $house['id'])}}">
+        @csrf
         <div class="accordion" id="accordionExample">
 
             {{--      EXTERNE CONDITIES      --}}
@@ -51,10 +26,19 @@
                     {{-- Extern content --}}
                         @foreach($externs as $extern)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$extern->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-                                        <option>{{$condition->name}}</option>
+                                        <option selected>
+                                            @if(!empty($house->conditionExtern()->first()->conditions()->name))
+                                                {{$house->conditionExtern->first()}}
+                                        </option>
+                                            @else
+                                            <option selected>
+                                                Geen beoordeling
+                                            </option>
+                                            @endif
+
                                     @endforeach
                                 </select><br>
                                 <textarea class="form-control form-control-sm-10" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%"></textarea>
@@ -77,9 +61,9 @@
                 <div id="collapseFacade" class="collapse" aria-labelledby="headingFacade" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Facade content --}}
-                        @foreach($externs as $extern)
+                        @foreach($facades as $facade)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$facade->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -105,9 +89,9 @@
                 <div id="collapseInstallations" class="collapse" aria-labelledby="headingInstallations" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Installations content --}}
-                        @foreach($externs as $extern)
+                        @foreach($installations as $installation)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$installation->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -133,9 +117,9 @@
                 <div id="collapseInterior" class="collapse" aria-labelledby="headingInterior" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Interior content --}}
-                        @foreach($externs as $extern)
+                        @foreach($interiors as $interior)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$interior->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -161,9 +145,9 @@
                 <div id="collapseSanitary" class="collapse" aria-labelledby="headingSanitary" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Sanitary content --}}
-                        @foreach($externs as $extern)
+                        @foreach($sanitaries as $sanitary)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$sanitary->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -189,9 +173,9 @@
                 <div id="collapseSubstructure" class="collapse" aria-labelledby="headingSubstructure" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Substructure content --}}
-                        @foreach($externs as $extern)
+                        @foreach($substructures as $substructure)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$substructure->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -217,9 +201,9 @@
                 <div id="collapseSuperstructure" class="collapse" aria-labelledby="headingSuperstructure" data-parent="#accordionExample" style="border: 1px solid #C8C8C8">
                     <div class="card-body">
                         {{-- Superstructure content --}}
-                        @foreach($externs as $extern)
+                        @foreach($superstructures as $superstructure)
                             <div class="form-group row">
-                                <label class="col-sm-2 col-form-label">{{$extern->name}}</label>
+                                <label class="col-sm-4 col-form-label">{{$superstructure->name}}</label>
                                 <select class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option>{{$condition->name}}</option>
@@ -230,16 +214,6 @@
                         @endforeach
                     </div>
                 </div>
-            </div>
-        </div>
-
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label" style="margin-left: 5%;">Tuininrichting</label>
-                <select class="form-control form-control-sm-10" style="width: 30%">
-                    @foreach($conditions as $condition)
-                        <option>{{$condition->name}}</option>
-                    @endforeach
-                </select>
             </div>
         </div>
     </form>

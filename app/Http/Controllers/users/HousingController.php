@@ -13,6 +13,7 @@ use App\Models\Sanitaries;
 use App\Models\Substructures;
 use App\Models\Superstructures;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HousingController extends Controller
 {
@@ -40,8 +41,9 @@ class HousingController extends Controller
     {
 
     }
-    public function edit(House $house)
+    public function edit($house)
     {
+        $current_house = House::all()->where('id', $house)->first();
         $conditions = Conditions::all();
         $externs = Externs::all();
         $facades = Facades::all();
@@ -52,7 +54,7 @@ class HousingController extends Controller
         $superstructures = Superstructures::all();
 
         return view('admin/housing/edit')->with([
-            'house' => $house,
+            'house' => $current_house,
             'conditions' => $conditions,
             'externs' => $externs,
             'facades' => $facades,

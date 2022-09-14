@@ -7,12 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use mysql_xdevapi\Table;
 
 class House extends Model
 {
     use HasFactory;
     protected $table = 'houses';
+
+    protected $fillable = [
+        'address',
+        'buildyear',
+        'surface',
+        'accessible',
+        'condition_id',
+    ];
 
     public function conditions(): belongsTo
     {
