@@ -30,6 +30,14 @@
                             <input id="address" class="form-control form-control-sm-10" style="width: 30%" placeholder="Adres" value="@if(isset($house->address)){{$house->address}}@endif">
                         </div>
                         <div class="form-group row">
+                            <label for="address" class="col-sm-4 col-form-label">City</label>
+                            <input id="address" class="form-control form-control-sm-10" style="width: 30%" placeholder="Adres" value="@if(isset($house->city)){{$house->city}}@endif">
+                        </div>
+                        <div class="form-group row">
+                            <label for="address" class="col-sm-4 col-form-label">postcode</label>
+                            <input id="address" class="form-control form-control-sm-10" style="width: 30%" placeholder="Adres" value="@if(isset($house->postalcode)){{$house->postalcode}}@endif">
+                        </div>
+                        <div class="form-group row">
                             <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
                             <input id="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($house->buildyear)){{$house->buildyear}}@endif">
                         </div>

@@ -16,7 +16,9 @@ class HouseSeeder extends Seeder
     public function run()
     {
         DB::table('houses')->insert([
-            'address' => 'Tasveld 2 Tolkamer',
+            'address' => 'Tasveld 2',
+            'city' => 'Tolkamer',
+            'postalcode' => '6916 LM',
             'buildyear' => '2000',
             'surface' => '220',
             'accessible' => true,

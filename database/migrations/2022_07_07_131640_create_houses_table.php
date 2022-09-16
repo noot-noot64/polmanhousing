@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('houses', function (Blueprint $table) {
             $table->id();
             $table->string('address');
+            $table->string('city');
+            $table->string('postalcode');
             $table->integer('buildyear');
             $table->integer('surface');
             $table->boolean('accessible');
