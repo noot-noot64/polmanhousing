@@ -18,12 +18,32 @@ class Conditions extends Model
         return $this->hasOne(House::class);
     }
 
-    public function condition_installation() :hasOne
+    public function conditionInstallation() :hasOne
     {
         return $this->hasOne(ConditionInstallation::class, 'condition_id');
     }
-    public function condition_extern() :hasOne
+    public function conditionExtern() :hasOne
     {
         return $this->hasOne(ConditionExtern::class, 'extern_id');
+    }
+    public function conditionFacade() :hasOne
+    {
+        return $this->hasOne(ConditionFacade::class, 'facade_id');
+    }
+    public function conditionInterior() :hasOne
+    {
+        return $this->hasOne(ConditionInterior::class, 'interior_id');
+    }
+    public function conditionSanitary() :hasOne
+    {
+        return $this->hasOne(ConditionSanitary::class, 'sanitary_id');
+    }
+    public function conditionSubstructure() :hasOne
+    {
+        return $this->hasOne(ConditionSubstructure::class, 'substructure_id');
+    }
+    public function conditionSuperstructure() :hasOne
+    {
+        return $this->hasOne(ConditionSuperstructure::class, 'superstructure_id');
     }
 }

@@ -12,21 +12,14 @@ class ConditionExtern extends Model
     use HasFactory;
     protected $table = 'extern_conditions';
 
-    protected $fillable = [
-        'id',
-        'extern_id',
-        'condition_id',
-        'house_id',
-        'comment',
-    ];
 
     public function conditions() :hasOne
     {
-        return $this->hasOne(Conditions::class, 'condition_id');
+        return $this->hasOne(Conditions::class, 'id');
     }
     public function houses() :belongsTo
     {
-        return $this->belongsTo(House::class, 'house_id');
+        return $this->belongsTo(House::class, 'id');
     }
     public function externs() :belongsTo
     {

@@ -15,7 +15,7 @@ class ConditionSeeder extends Seeder
      */
     public function run()
     {
-        $conditions = ['Uitstekend', 'Goed', 'Redelijk', 'Matig', 'Slecht', 'Zeer slecht', 'Nader onderzoek', 'Niet te inspecteren', 'Geen beoordeling', 'NVT'];
+        $conditions = ['Geen beoordeling', 'Uitstekend', 'Goed', 'Redelijk', 'Matig', 'Slecht', 'Zeer slecht', 'Nader onderzoek', 'Niet te inspecteren', 'NVT'];
         foreach ($conditions as $c){
             DB::table('conditions')->insert([
                 'name' => $c

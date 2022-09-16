@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\users;
 
+use App\Models\ConditionExtern;
+use App\Models\ConditionFacade;
 use App\Models\ConditionInstallation;
+use App\Models\ConditionInterior;
 use App\Models\Conditions;
+use App\Models\ConditionSanitary;
+use App\Models\ConditionSubstructure;
+use App\Models\ConditionSuperstructure;
 use App\Models\Externs;
 use App\Models\Facades;
 use App\Models\House;
@@ -44,6 +50,14 @@ class HousingController extends Controller
     public function edit($house)
     {
         $current_house = House::all()->where('id', $house)->first();
+        $houseExtern = ConditionExtern::all()->where('house_id', $current_house->id)->first();
+
+        $houseInstallation = ConditionInstallation::all()->where('house_id', $current_house->id)->first();
+        $houseFacade = ConditionFacade::all()->where('house_id', $current_house->id)->first();
+        $houseInterior = ConditionInterior::all()->where('house_id', $current_house->id)->first();
+        $houseSanitary = ConditionSanitary::all()->where('house_id', $current_house->id)->first();
+        $houseSubstructure = ConditionSubstructure::all()->where('house_id', $current_house->id)->first();
+        $houseSuperstructure = ConditionSuperstructure::all()->where('house_id', $current_house->id)->first();
         $conditions = Conditions::all();
         $externs = Externs::all();
         $facades = Facades::all();
@@ -55,6 +69,13 @@ class HousingController extends Controller
 
         return view('admin/housing/edit')->with([
             'house' => $current_house,
+            'house_extern' => $houseExtern,
+            'house_installation' => $houseInstallation,
+            'house_facade' => $houseFacade,
+            'house_interior' => $houseInterior,
+            'house_sanitary' => $houseSanitary,
+            'house_substructure' => $houseSubstructure,
+            'house_superstructure' => $houseSuperstructure,
             'conditions' => $conditions,
             'externs' => $externs,
             'facades' => $facades,
@@ -65,8 +86,11 @@ class HousingController extends Controller
             'superstructures' => $superstructures
             ]);
     }
-    public function update()
+    public function update(Request $request, House $house)
     {
+        $validated = $request->validate([
+            ''
+        ]);
 
     }
     public function destroy()
