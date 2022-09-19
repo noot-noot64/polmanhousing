@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Sanctum\HasApiTokens;
 
 class House extends Model
 {
-    use HasFactory;
+    use HasFactory, hasApiTokens;
     protected $table = 'houses';
 
     protected $fillable = [
         'address',
+        'city',
+        'postalcode',
         'buildyear',
         'surface',
         'accessible',

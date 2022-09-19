@@ -86,12 +86,26 @@ class HousingController extends Controller
             'superstructures' => $superstructures
             ]);
     }
-    public function update(Request $request, House $house)
+    public function update(Request $request, $house)
     {
+
+        $current_house = House::all()->where('id', $house)->first();
         $validated = $request->validate([
-            ''
+            'address' => ['required', 'string'],
+            'city' => ['required', 'string'],
+            'postalcode' => ['required', 'string', 'max:6'],
+            'buildyear' => ['nullable', 'integer'],
+            'surface' => ['nullable', 'integer'],
         ]);
 
+        $current_house->update([
+            'address' => ucfirst($validated['address']),
+            'city' => ucfirst($validated['city']),
+            'postalcode' => $validated['postalcode'],
+            'buildyear' => $validated['buildyear'],
+            'surface' => $validated['surface'],
+        ]);
+        return redirect()->back()->with(['message' => ['message' => 'Gebruiker succesvol bewerkt', 'type' => 'success']]);
     }
     public function destroy()
     {
