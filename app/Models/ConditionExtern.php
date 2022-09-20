@@ -12,6 +12,12 @@ class ConditionExtern extends Model
     use HasFactory;
     protected $table = 'extern_conditions';
 
+    protected $fillable = [
+        'extern_id',
+        'condition_id',
+        'house_id',
+        'comment',
+    ];
 
     public function conditions() :hasOne
     {

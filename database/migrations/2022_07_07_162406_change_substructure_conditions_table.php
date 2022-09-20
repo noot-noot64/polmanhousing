@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('substructure_conditions', function (Blueprint $table) {
-            $table->text('comment');
+            $table->text('comment')->nullable();
         });
     }
 

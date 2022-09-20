@@ -2,7 +2,14 @@
 
 @section('body')
 
-
+@if(session('success'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{session('success')}}
+    </div>
+@endif
 
 <h2>Bewerk huis</h2>
 <h6 style="color: grey">{{$house['address']}}</h6>
@@ -36,28 +43,26 @@
                         <div class="form-group row">
                             <label for="address" class="col-sm-4 col-form-label">Postcode</label>
                             <input id="address" name="postalcode" class="form-control form-control-sm-10" style="width: 30%" placeholder="Adres" value="@if(isset($house->postalcode)){{$house->postalcode}}@endif">
+                            <small id="address-small" class="form-text text-muted">Postcode formaat: 1234AB</small>
                         </div>
                         <div class="form-group row">
                             <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
-                            <input id="buildyear" name="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($house->buildyear)){{$house->buildyear}}@endif">
+                            <input id="buildyear" type="number" max="{{date('Y')}}" min="1000" name="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($house->buildyear)){{$house->buildyear}}@endif">
                         </div>
                         <div class="form-group row">
                             <label for="surface" class="col-sm-4 col-form-label">Oppervlakte</label>
-                            <input id="surface" name="surface" class="form-control form-control-sm-10" style="width: 30%" placeholder="Oppervlakte" value="@if(isset($house->surface)){{$house->surface}}@endif">
+                            <input id="surface" type="number" min="1" name="surface" class="form-control form-control-sm-10" style="width: 30%" placeholder="Oppervlakte" value="@if(isset($house->surface)){{$house->surface}}@endif">
                         </div>
                         <div class="form-group row">
                             <label for="accessible" class="col-sm-4 col-form-label">Toegang vanaf tuin</label>
                             @if(isset($house->accessible))
-                            <select id="accessible" class="form-control form-control-sm-10" style="width: 30%">
-                            @if($house->accessible == 1)
-                            <option value="1">
-                                Ja
-                            </option>
-                            @elseif($house->accessible == 0)
-                            <option value="0">
-                                Nee
-                            </option>
-                            @endif
+                            <select id="accessible" name="accessible" class="form-control form-control-sm-10" style="width: 30%">
+                                <option value="1" @if($house->accessible == 1) selected @endif>
+                                    Ja
+                                </option>
+                                <option value="0" @if($house->accessible == 0) selected @endif>
+                                    Nee
+                                </option>
                             </select>
                             @else
                                 <input id="surface" class="form-control form-control-sm-10" style="width: 30%" placeholder="Geen data" value="Geen data" readonly>
@@ -65,7 +70,22 @@
                         </div>
                         <div class="form-group row">
                             <label for="condition" class="col-sm-4 col-form-label">Conditie</label>
-                            <input id="condition" class="form-control form-control-sm-10" style="width: 30%" placeholder="Conditie" value="@if(isset($house->condition_id)){{$house->conditions()->first()->name}}@endif">
+                            <select name="condition" id="condition" class="form-control form-control-sm-10" style="width: 30%">
+                                @foreach($conditions as $condition)
+
+                                    <option value="{{$condition->id}}"
+                                            @if(isset($house->condition_id))
+                                            @if($house->condition_id == $condition->id)
+                                            selected
+                                        @endif
+                                        @endif>
+                                        {{$condition->name}}
+                                    </option>
+
+                                @endforeach
+                            </select>
+{{--                            <input id="condition" class="form-control form-control-sm-10" style="width: 30%" placeholder="Conditie"--}}
+{{--                                   value="@if(isset($house->condition_id)){{$house->conditions()->first()->name}}@endif">--}}
                         </div>
                     </div>
                 </div>
@@ -89,19 +109,15 @@
                                 <label class="col-sm-4 col-form-label">{{$extern->name}}</label>
                                 <select name="externs-{{$extern->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
-                                            @if(isset($house_extern))
-                                            @if($house_extern->condition_id == $condition->id && $house_extern->extern_id == $extern->id)
+                                            @if($house_extern->first()->condition_id == $condition->first()->id && $house_extern->first()->extern_id == $extern->first()->id)
                                                 selected
-                                            @endif
                                             @endif>
                                         {{$condition->name}}
                                         </option>
-
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_extern->comment) && $house_extern->extern_id == $extern->id){{$house_extern->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_extern->first()->comment) && $house_extern->first()->extern_id == $extern->id){{$house_extern->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -126,10 +142,9 @@
                                 <label class="col-sm-4 col-form-label">{{$facade->name}}</label>
                                 <select name="facades-{{$facade->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_facade))
-                                                @if($house_facade->condition_id == $condition->id && $house_facade->facade_id == $facade->id)
+                                                @if($house_facade->first()->condition_id == $condition->id && $house_facade->first()->facade_id == $facade->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -137,7 +152,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="facade-comment-{{$facade->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_facade->comment) && $house_facade->facade_id == $facade->id) {{$house_facade->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="facade-comment-{{$facade->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_facade->first()->comment) && $house_facade->first()->facade_id == $facade->id) {{$house_facade->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -162,10 +177,9 @@
                                 <label class="col-sm-4 col-form-label">{{$installation->name}}</label>
                                 <select name="installations-{{$installation->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_installation))
-                                                @if($house_installation->condition_id == $condition->id && $house_installation->installation_id == $installation->id)
+                                                @if($house_installation->first()->condition_id == $condition->id && $house_installation->first()->installation_id == $installation->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -173,7 +187,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="installation-comment-{{$installation->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_installation->comment) && $house_installation->installation_id == $installation->id) {{$house_installation->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="installation-comment-{{$installation->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_installation->first()->comment) && $house_installation->first()->installation_id == $installation->id) {{$house_installation->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -198,10 +212,9 @@
                                 <label class="col-sm-4 col-form-label">{{$interior->name}}</label>
                                 <select name="interiors-{{$interior->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_interior))
-                                                @if($house_interior->condition_id == $condition->id && $house_interior->interior_id == $interior->id)
+                                                @if($house_interior->first()->condition_id == $condition->id && $house_interior->first()->interior_id == $interior->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -209,7 +222,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="interior-comment-{{$interior->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_interior->comment) && $house_interior->interior_id == $interior->id) {{$house_interior->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="interior-comment-{{$interior->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_interior->first()->comment) && $house_interior->first()->interior_id == $interior->id) {{$house_interior->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -234,10 +247,9 @@
                                 <label class="col-sm-4 col-form-label">{{$sanitary->name}}</label>
                                 <select name="sanitaries-{{$sanitary->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_sanitary))
-                                                @if($house_sanitary->condition_id == $condition->id && $house_sanitary->sanitary_id == $sanitary->id)
+                                                @if($house_sanitary->first()->condition_id == $condition->id && $house_sanitary->first()->sanitary_id == $sanitary->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -245,7 +257,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="sanitary-comment{{$sanitary->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_sanitary->comment) && $house_sanitary->sanitary_id == $sanitary->id) {{$house_sanitary->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="sanitary-comment{{$sanitary->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_sanitary->first()->comment) && $house_sanitary->first()->sanitary_id == $sanitary->id) {{$house_sanitary->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -270,10 +282,9 @@
                                 <label class="col-sm-4 col-form-label">{{$substructure->name}}</label>
                                 <select name="substructures-{{$substructure->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_substructure))
-                                                @if($house_substructure->condition_id == $condition->id && $house_substructure->substructure_id == $substructure->id)
+                                                @if($house_substructure->first()->condition_id == $condition->id && $house_substructure->first()->substructure_id == $substructure->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -281,7 +292,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="substructure-comment-{{$substructure->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_substructure->comment) && $house_substructure->substructure_id == $substructure->id) {{$house_substructure->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="substructure-comment-{{$substructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_substructure->first()->comment) && $house_substructure->first()->substructure_id == $substructure->id) {{$house_substructure->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -306,10 +317,9 @@
                                 <label class="col-sm-4 col-form-label">{{$superstructure->name}}</label>
                                 <select name="superstructures-{{$superstructure->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
-
                                         <option value="{{$condition->id}}"
                                                 @if(isset($house_superstructure))
-                                                @if($house_superstructure->condition_id == $condition->id && $house_superstructure->superstructure_id == $superstructure->id)
+                                                @if($house_superstructure->first()->condition_id == $condition->id && $house_superstructure->first()->superstructure_id == $superstructure->id)
                                                 selected
                                             @endif
                                             @endif>
@@ -317,7 +327,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="superstructure-comment-{{$superstructure->id}}" id="comment" placeholder="Aantekening" rows="5" cols="40" style="width: 30%">@if(isset($house_superstructure->comment) && $house_superstructure->superstructure_id == $superstructure->id) {{$house_superstructure->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="superstructure-comment-{{$superstructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_superstructure->first()->comment) && $house_superstructure->first()->superstructure_id == $superstructure->id) {{$house_superstructure->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>

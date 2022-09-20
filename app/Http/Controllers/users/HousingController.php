@@ -50,14 +50,13 @@ class HousingController extends Controller
     public function edit($house)
     {
         $current_house = House::all()->where('id', $house)->first();
-        $houseExtern = ConditionExtern::all()->where('house_id', $current_house->id)->first();
-
-        $houseInstallation = ConditionInstallation::all()->where('house_id', $current_house->id)->first();
-        $houseFacade = ConditionFacade::all()->where('house_id', $current_house->id)->first();
-        $houseInterior = ConditionInterior::all()->where('house_id', $current_house->id)->first();
-        $houseSanitary = ConditionSanitary::all()->where('house_id', $current_house->id)->first();
-        $houseSubstructure = ConditionSubstructure::all()->where('house_id', $current_house->id)->first();
-        $houseSuperstructure = ConditionSuperstructure::all()->where('house_id', $current_house->id)->first();
+        $houseExtern = ConditionExtern::all()->where('house_id', $current_house->id);
+        $houseInstallation = ConditionInstallation::all()->where('house_id', $current_house->id);
+        $houseFacade = ConditionFacade::all()->where('house_id', $current_house->id);
+        $houseInterior = ConditionInterior::all()->where('house_id', $current_house->id);
+        $houseSanitary = ConditionSanitary::all()->where('house_id', $current_house->id);
+        $houseSubstructure = ConditionSubstructure::all()->where('house_id', $current_house->id);
+        $houseSuperstructure = ConditionSuperstructure::all()->where('house_id', $current_house->id);
         $conditions = Conditions::all();
         $externs = Externs::all();
         $facades = Facades::all();
@@ -66,6 +65,7 @@ class HousingController extends Controller
         $sanitaries = Sanitaries::all();
         $substructures = Substructures::all();
         $superstructures = Superstructures::all();
+
 
         return view('admin/housing/edit')->with([
             'house' => $current_house,
@@ -88,7 +88,7 @@ class HousingController extends Controller
     }
     public function update(Request $request, $house)
     {
-
+//        dd($request);
         $current_house = House::all()->where('id', $house)->first();
         $validated = $request->validate([
             'address' => ['required', 'string'],
@@ -96,6 +96,8 @@ class HousingController extends Controller
             'postalcode' => ['required', 'string', 'max:6'],
             'buildyear' => ['nullable', 'integer'],
             'surface' => ['nullable', 'integer'],
+            'accessible' => ['nullable', 'integer'],
+            'condition' => ['required', 'integer'],
         ]);
 
         $current_house->update([
@@ -104,8 +106,52 @@ class HousingController extends Controller
             'postalcode' => $validated['postalcode'],
             'buildyear' => $validated['buildyear'],
             'surface' => $validated['surface'],
+            'accessible' => $validated['accessible'],
+            'condition_id' => $validated['condition'],
         ]);
-        return redirect()->back()->with(['message' => ['message' => 'Gebruiker succesvol bewerkt', 'type' => 'success']]);
+
+        $validated_externs = $request->validate([
+            "externs-1" => ['required', 'integer'],
+            "externs-2" => ['required', 'integer'],
+            "externs-3" => ['required', 'integer'],
+            "externs-4" => ['required', 'integer'],
+            "externs-5" => ['required', 'integer'],
+            "externs-6" => ['required', 'integer'],
+            "externs-7" => ['required', 'integer'],
+            "externs-8" => ['required', 'integer'],
+            "externs-9" => ['required', 'integer'],
+        ]);
+        $validated_extern_comments = $request->validate([
+            "extern-comment-1" => ['nullable', 'string'],
+            "extern-comment-2" => ['nullable', 'string'],
+            "extern-comment-3" => ['nullable', 'string'],
+            "extern-comment-4" => ['nullable', 'string'],
+            "extern-comment-5" => ['nullable', 'string'],
+            "extern-comment-6" => ['nullable', 'string'],
+            "extern-comment-7" => ['nullable', 'string'],
+            "extern-comment-8" => ['nullable', 'string'],
+            "extern-comment-9" => ['nullable', 'string'],
+        ]);
+        foreach($validated_externs as $extern_name => $condition_id) {
+            foreach($validated_extern_comments as $extern_comment => $comment_value) {
+//                dd($comment_value);
+                $extern_id = substr($extern_name, -1);
+                if (empty(ConditionExtern::all()->where('extern_id', $extern_id)->first())) {
+                    ConditionExtern::create([
+                        'extern_id' => $extern_id,
+                        'house_id' => $house,
+                        'condition_id' => $condition_id,
+                        'comment' => $comment_value,
+                    ]);
+                } else {
+                    ConditionExtern::where('extern_id', $extern_id)->update([
+                        'condition_id' => $condition_id,
+                        'comment' => $comment_value,
+                    ]);
+                }
+            }
+        }
+        return redirect()->back()->with('success','Succesvol huis bewerkt');
     }
     public function destroy()
     {
