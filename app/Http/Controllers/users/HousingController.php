@@ -66,7 +66,6 @@ class HousingController extends Controller
         $substructures = Substructures::all();
         $superstructures = Superstructures::all();
 
-
         return view('admin/housing/edit')->with([
             'house' => $current_house,
             'house_extern' => $houseExtern,
@@ -132,23 +131,23 @@ class HousingController extends Controller
             "extern-comment-8" => ['nullable', 'string'],
             "extern-comment-9" => ['nullable', 'string'],
         ]);
-        foreach($validated_externs as $extern_name => $condition_id) {
-            foreach($validated_extern_comments as $extern_comment => $comment_value) {
-//                dd($comment_value);
-                $extern_id = substr($extern_name, -1);
-                if (empty(ConditionExtern::all()->where('extern_id', $extern_id)->first())) {
-                    ConditionExtern::create([
-                        'extern_id' => $extern_id,
-                        'house_id' => $house,
-                        'condition_id' => $condition_id,
-                        'comment' => $comment_value,
-                    ]);
-                } else {
-                    ConditionExtern::where('extern_id', $extern_id)->update([
-                        'condition_id' => $condition_id,
-                        'comment' => $comment_value,
-                    ]);
-                }
+        foreach ($validated_externs as $extern_name => $condition_id) {
+
+            $extern_id = substr($extern_name, -1);
+            $comment_name =  'extern-comment-'. $extern_id;
+            $comment = $validated_extern_comments[$comment_name];
+            if (empty(ConditionExtern::all()->where('extern_id', $extern_id)->first())) {
+                ConditionExtern::create([
+                    'extern_id' => $extern_id,
+                    'house_id' => $house,
+                    'condition_id' => $condition_id,
+                    'comment' => $comment,
+                ]);
+            } else {
+                ConditionExtern::where('extern_id', $extern_id)->update([
+                    'condition_id' => $condition_id,
+                    'comment' => $comment,
+                ]);
             }
         }
         return redirect()->back()->with('success','Succesvol huis bewerkt');

@@ -110,14 +110,16 @@
                                 <select name="externs-{{$extern->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                            @if($house_extern->first()->condition_id == $condition->first()->id && $house_extern->first()->extern_id == $extern->first()->id)
-                                                selected
-                                            @endif>
+                                            @foreach($house_extern as $extern_condition)
+                                                @if($extern_condition->condition_id == $condition->id && $extern_condition->extern_id == $extern->id)
+                                                    selected
+                                                @endif
+                                            @endforeach>
                                         {{$condition->name}}
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_extern->first()->comment) && $house_extern->first()->extern_id == $extern->id){{$house_extern->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">{{$extern->conditionExtern()->first()->comment}}</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -143,11 +145,11 @@
                                 <select name="facades-{{$facade->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_facade))
-                                                @if($house_facade->first()->condition_id == $condition->id && $house_facade->first()->facade_id == $facade->id)
+                                            @foreach($house_facade as $facade_condition)
+                                                @if($facade_condition->condition_id == $condition->id && $facade_condition->facade_id == $facade->id)
                                                 selected
-                                            @endif
-                                            @endif>
+                                                @endif
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
