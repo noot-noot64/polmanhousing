@@ -11,7 +11,7 @@ class Interiors extends Model
     use HasFactory;
     protected $table = 'interiors';
 
-    public function conditionInteriors() :hasOne
+    public function conditionInterior() :hasOne
     {
         return $this->hasOne(ConditionInterior::class, 'interior_id');
     }

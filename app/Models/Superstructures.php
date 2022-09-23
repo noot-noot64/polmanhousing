@@ -11,7 +11,7 @@ class Superstructures extends Model
     use HasFactory;
     protected $table = 'superstructures';
 
-    public function conditionSuperstructures() :hasOne
+    public function conditionSuperstructure() :hasOne
     {
         return $this->hasOne(ConditionSuperstructure::class, 'superstructure_id');
     }

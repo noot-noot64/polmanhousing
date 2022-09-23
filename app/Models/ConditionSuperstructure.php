@@ -14,7 +14,7 @@ class ConditionSuperstructure extends Model
 
     protected $fillable = [
         'id',
-        'superstructures_id',
+        'superstructure_id',
         'condition_id',
         'house_id',
         'comment',

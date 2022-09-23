@@ -119,7 +119,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">{{$extern->conditionExtern()->first()->comment}}</textarea>
+                                <textarea class="form-control form-control-sm-10" name="extern-comment-{{$extern->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($extern->conditionExtern()->first()->comment)){{$extern->conditionExtern()->first()->comment}}@endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -154,7 +154,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="facade-comment-{{$facade->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_facade->first()->comment) && $house_facade->first()->facade_id == $facade->id) {{$house_facade->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="facade-comment-{{$facade->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($facade->conditionFacade()->first()->comment)){{$facade->conditionFacade()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -189,7 +189,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="installation-comment-{{$installation->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_installation->first()->comment) && $house_installation->first()->installation_id == $installation->id) {{$house_installation->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="installation-comment-{{$installation->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($installation->conditionInstallation()->first()->comment)){{$installation->conditionInstallation()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -224,7 +224,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="interior-comment-{{$interior->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_interior->first()->comment) && $house_interior->first()->interior_id == $interior->id) {{$house_interior->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="interior-comment-{{$interior->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($interior->conditionInterior()->first()->comment)){{$interior->conditionInterior()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -259,7 +259,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="sanitary-comment{{$sanitary->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_sanitary->first()->comment) && $house_sanitary->first()->sanitary_id == $sanitary->id) {{$house_sanitary->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="sanitary-comment-{{$sanitary->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($sanitary->conditionSanitary()->first()->comment)){{$sanitary->conditionSanitary()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -294,7 +294,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="substructure-comment-{{$substructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_substructure->first()->comment) && $house_substructure->first()->substructure_id == $substructure->id) {{$house_substructure->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="substructure-comment-{{$substructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($substructure->conditionSubstructure()->first()->comment)){{$substructure->conditionSubstructure()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
@@ -329,7 +329,7 @@
                                         </option>
                                     @endforeach
                                 </select><br>
-                                <textarea class="form-control form-control-sm-10" name="superstructure-comment-{{$superstructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($house_superstructure->first()->comment) && $house_superstructure->first()->superstructure_id == $superstructure->id) {{$house_superstructure->first()->comment}}@endif</textarea>
+                                <textarea class="form-control form-control-sm-10" name="superstructure-comment-{{$superstructure->id}}" id="comment" placeholder="Aantekening" rows="2" cols="40" style="width: 30%">@if(isset($superstructure->conditionSuperstructure()->first()->comment)){{$superstructure->conditionSuperstructure()->first()->comment}} @endif</textarea>
                             </div>
                         @endforeach
                     </div>
