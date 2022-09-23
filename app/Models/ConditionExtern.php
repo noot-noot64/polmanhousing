@@ -19,6 +19,7 @@ class ConditionExtern extends Model
         'comment',
     ];
 
+
     public function conditions() :hasOne
     {
         return $this->hasOne(Conditions::class, 'id');

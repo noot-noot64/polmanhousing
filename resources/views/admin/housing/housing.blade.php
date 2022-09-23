@@ -4,6 +4,7 @@
 
 <div class="housings animated fadeInDown">
     <h1>Woningen</h1>Zoeken:
+    <a class="btn btn-success" href="housing/create" style="float: right">Voeg huis toe +</a>
     <table class="table table-hover">
         <thead>
         <tr>

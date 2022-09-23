@@ -180,11 +180,11 @@
                                 <select name="installations-{{$installation->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_installation))
-                                                @if($house_installation->first()->condition_id == $condition->id && $house_installation->first()->installation_id == $installation->id)
+                                                @foreach($house_installation as $installation_condition)
+                                                @if($installation_condition->condition_id == $condition->id && $installation_condition->installation_id == $installation->id)
                                                 selected
                                             @endif
-                                            @endif>
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
@@ -215,11 +215,11 @@
                                 <select name="interiors-{{$interior->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_interior))
-                                                @if($house_interior->first()->condition_id == $condition->id && $house_interior->first()->interior_id == $interior->id)
+                                                @foreach($house_interior as $interior_condition)
+                                                @if($interior_condition->condition_id == $condition->id && $interior_condition->interior_id == $interior->id)
                                                 selected
                                             @endif
-                                            @endif>
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
@@ -250,11 +250,11 @@
                                 <select name="sanitaries-{{$sanitary->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_sanitary))
-                                                @if($house_sanitary->first()->condition_id == $condition->id && $house_sanitary->first()->sanitary_id == $sanitary->id)
+                                                @foreach($house_sanitary as $sanitary_condition)
+                                                @if($sanitary_condition->condition_id == $condition->id && $sanitary_condition->sanitary_id == $sanitary->id)
                                                 selected
                                             @endif
-                                            @endif>
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
@@ -285,11 +285,11 @@
                                 <select name="substructures-{{$substructure->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_substructure))
-                                                @if($house_substructure->first()->condition_id == $condition->id && $house_substructure->first()->substructure_id == $substructure->id)
+                                                @foreach($house_substructure as $substructure_condition)
+                                                @if($substructure_condition->condition_id == $condition->id && $substructure_condition->substructure_id == $substructure->id)
                                                 selected
                                             @endif
-                                            @endif>
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
@@ -320,11 +320,11 @@
                                 <select name="superstructures-{{$superstructure->id}}" class="form-control form-control-sm-10" style="width: 30%">
                                     @foreach($conditions as $condition)
                                         <option value="{{$condition->id}}"
-                                                @if(isset($house_superstructure))
-                                                @if($house_superstructure->first()->condition_id == $condition->id && $house_superstructure->first()->superstructure_id == $superstructure->id)
+                                                @foreach($house_superstructure as $superstructure_condition)
+                                                @if($superstructure_condition->condition_id == $condition->id && $superstructure_condition->superstructure_id == $superstructure->id)
                                                 selected
                                             @endif
-                                            @endif>
+                                            @endforeach>
                                             {{$condition->name}}
                                         </option>
                                     @endforeach
