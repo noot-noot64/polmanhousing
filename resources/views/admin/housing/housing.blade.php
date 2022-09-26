@@ -29,7 +29,7 @@
                 <td>{{$house->conditions()->first()->name}}</td>
                 <td><a href="housing/edit/{{$house['id']}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                 <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
-                <td><a href=""><i class="fa-solid fa-gear"></i></a></td>
+                <td><a href="housing/show/{{$house['id']}}"><i class="fa-solid fa-gear"></i></a></td>
             </tr>
         @endforeach
         </tbody>

@@ -22,9 +22,9 @@ class Conditions extends Model
     {
         return $this->hasOne(ConditionInstallation::class, 'condition_id');
     }
-    public function conditionExtern() :hasOne
+    public function conditionExtern() :hasMany
     {
-        return $this->hasOne(ConditionExtern::class, 'extern_id');
+        return $this->hasMany(ConditionExtern::class, 'extern_id');
     }
     public function conditionFacade() :hasOne
     {

@@ -31,13 +31,47 @@ class HousingController extends Controller
 
     public function index()
     {
-        $housing = House::all();
+        $housing = House::all()->where('disabled', '=', '0');
 
         return view('admin/housing/housing')->with(['houses' => $housing]);
     }
-    public function show()
+    public function show($house)
     {
+        $current_house = House::all()->where('id', $house)->first();
+        $houseExtern = ConditionExtern::all()->where('house_id', $current_house->id);
+        $houseInstallation = ConditionInstallation::all()->where('house_id', $current_house->id);
+        $houseFacade = ConditionFacade::all()->where('house_id', $current_house->id);
+        $houseInterior = ConditionInterior::all()->where('house_id', $current_house->id);
+        $houseSanitary = ConditionSanitary::all()->where('house_id', $current_house->id);
+        $houseSubstructure = ConditionSubstructure::all()->where('house_id', $current_house->id);
+        $houseSuperstructure = ConditionSuperstructure::all()->where('house_id', $current_house->id);
+        $conditions = Conditions::all();
+        $externs = Externs::all();
+        $facades = Facades::all();
+        $interiors = Interiors::all();
+        $installations = Installations::all();
+        $sanitaries = Sanitaries::all();
+        $substructures = Substructures::all();
+        $superstructures = Superstructures::all();
 
+        return view('admin/housing/show')->with([
+            'house' => $current_house,
+            'house_extern' => $houseExtern,
+            'house_installation' => $houseInstallation,
+            'house_facade' => $houseFacade,
+            'house_interior' => $houseInterior,
+            'house_sanitary' => $houseSanitary,
+            'house_substructure' => $houseSubstructure,
+            'house_superstructure' => $houseSuperstructure,
+            'conditions' => $conditions,
+            'externs' => $externs,
+            'facades' => $facades,
+            'interiors' => $interiors,
+            'installations' => $installations,
+            'sanitaries' => $sanitaries,
+            'substructures' => $substructures,
+            'superstructures' => $superstructures
+        ]);
     }
     public function create()
     {
