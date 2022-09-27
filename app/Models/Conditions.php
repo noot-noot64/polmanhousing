@@ -24,26 +24,26 @@ class Conditions extends Model
     }
     public function conditionExtern() :hasMany
     {
-        return $this->hasMany(ConditionExtern::class, 'extern_id');
+        return $this->hasMany(ConditionExtern::class, 'condition_id');
     }
     public function conditionFacade() :hasOne
     {
-        return $this->hasOne(ConditionFacade::class, 'facade_id');
+        return $this->hasOne(ConditionFacade::class, 'condition_id');
     }
     public function conditionInterior() :hasOne
     {
-        return $this->hasOne(ConditionInterior::class, 'interior_id');
+        return $this->hasOne(ConditionInterior::class, 'condition_id');
     }
     public function conditionSanitary() :hasOne
     {
-        return $this->hasOne(ConditionSanitary::class, 'sanitary_id');
+        return $this->hasOne(ConditionSanitary::class, 'condition_id');
     }
     public function conditionSubstructure() :hasOne
     {
-        return $this->hasOne(ConditionSubstructure::class, 'substructure_id');
+        return $this->hasOne(ConditionSubstructure::class, 'condition_id');
     }
     public function conditionSuperstructure() :hasOne
     {
-        return $this->hasOne(ConditionSuperstructure::class, 'superstructure_id');
+        return $this->hasOne(ConditionSuperstructure::class, 'condition_id');
     }
 }

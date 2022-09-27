@@ -192,12 +192,10 @@ class HousingController extends Controller
             $extern_id = substr($extern_name, -1);
             $comment_name =  'extern-comment-'. $extern_id;
             $comment = $validated_extern_comments[$comment_name];
-            ConditionExtern::updateOrCreate([
-                'extern_id' => $extern_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionExtern::updateOrCreate(
+                ['extern_id' => $extern_id, 'house_id' => $house],
+                ['condition_id' => $condition_id, 'comment' => $comment]
+            );
         }
 
         //facade update en create
@@ -257,12 +255,10 @@ class HousingController extends Controller
 
             $comment_name =  'facade-comment-'. $facade_id;
             $comment = $validated_facade_comments[$comment_name];
-            ConditionFacade::updateOrCreate([
-                'facade_id' => $facade_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionFacade::updateOrCreate(
+                ['facade_id' => $facade_id, 'house_id' => $house],
+                ['condition_id' => $condition_id, 'comment' => $comment]
+            );
         }
 
         //installation update en create
@@ -305,12 +301,10 @@ class HousingController extends Controller
             $installation_id = substr($installation_name, 14);
             $comment_name =  'installation-comment-'. $installation_id;
             $comment = $validated_installation_comments[$comment_name];
-            ConditionInstallation::updateOrCreate([
-                'installation_id' => $installation_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionInstallation::updateOrCreate(
+                ['installation_id' => $installation_id, 'house_id' => $house],
+                ['condition_id' => $condition_id, 'comment' => $comment]
+            );
         }
 
         //interior update en create
@@ -339,12 +333,10 @@ class HousingController extends Controller
             $interior_id = substr($interior_name, 10);
             $comment_name =  'interior-comment-'. $interior_id;
             $comment = $validated_interior_comments[$comment_name];
-            ConditionInterior::updateOrCreate([
-                'interior_id' => $interior_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionInterior::updateOrCreate(
+                ['interior_id' => $interior_id, 'house_id' => $house],
+                ['condition_id' => $condition_id, 'comment' => $comment]
+            );
         }
 
         //sanitary update en create
@@ -419,12 +411,10 @@ class HousingController extends Controller
             $sanitary_id = substr($sanitary_name, 11);
             $comment_name =  'sanitary-comment-'. $sanitary_id;
             $comment = $validated_sanitary_comments[$comment_name];
-            ConditionSanitary::updateOrCreate([
-                'sanitary_id' => $sanitary_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionSanitary::updateOrCreate(
+                ['sanitary_id' => $sanitary_id, 'condition_id' => $condition_id],
+                ['house_id' => $house, 'comment' => $comment],
+            );
         }
 
         //substructure update en create
@@ -453,12 +443,10 @@ class HousingController extends Controller
             $substructure_id = substr($substructure_name, 14);
             $comment_name =  'substructure-comment-'. $substructure_id;
             $comment = $validated_substructure_comments[$comment_name];
-            ConditionSubstructure::updateOrCreate([
-                'substructure_id' => $substructure_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionSubstructure::updateOrCreate(
+                ['substructure_id' => $substructure_id, 'house_id' => $house],
+                ['condition_id' => $condition_id, 'comment' => $comment]
+            );
         }
 
         //installation update en create
@@ -555,12 +543,10 @@ class HousingController extends Controller
             $superstructure_id = substr($superstructure_name, 16);
             $comment_name =  'superstructure-comment-'. $superstructure_id;
             $comment = $validated_superstructure_comments[$comment_name];
-            ConditionSuperstructure::updateOrCreate([
-                'superstructure_id' => $superstructure_id,
-                'condition_id' => $condition_id,
-                'house_id' => $house,
-                'comment' => $comment,
-            ]);
+            ConditionSuperstructure::updateOrCreate(
+                ['superstructure_id' => $superstructure_id, 'condition_id' => $condition_id],
+                ['house_id' => $house, 'comment' => $comment]
+            );
         }
         return redirect()->back()->with('success','Succesvol huis bewerkt');
     }

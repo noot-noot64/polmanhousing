@@ -22,7 +22,7 @@ class ConditionExtern extends Model
 
     public function conditions() :hasOne
     {
-        return $this->hasOne(Conditions::class, 'id');
+        return $this->hasOne(Conditions::class, 'condition_id');
     }
     public function houses() :belongsTo
     {
@@ -30,6 +30,6 @@ class ConditionExtern extends Model
     }
     public function externs() :belongsTo
     {
-        return $this->belongsTo(Externs::class, 'extern_id');
+        return $this->belongsTo(Externs::class, 'id');
     }
 }
