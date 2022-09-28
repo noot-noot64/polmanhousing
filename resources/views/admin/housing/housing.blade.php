@@ -4,7 +4,7 @@
 
 <div class="housings animated fadeInDown">
     <h1>Woningen</h1>Zoeken:
-    <a class="btn btn-success" href="housing/create" style="float: right">Voeg huis toe +</a>
+    <a class="btn btn-success" href="{{route('admin.housing.create')}}" style="float: right">Voeg huis toe +</a>
     <table class="table table-hover">
         <thead>
         <tr>
@@ -28,8 +28,8 @@
                 <td>@if($house['accessible'] == 1) Ja @else Nee @endif</td>
                 <td>{{$house->conditions()->first()->name}}</td>
                 <td><a href="housing/edit/{{$house['id']}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
                 <td><a href="housing/show/{{$house['id']}}"><i class="fa-solid fa-gear"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
             </tr>
         @endforeach
         </tbody>

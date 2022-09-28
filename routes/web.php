@@ -45,11 +45,12 @@ Route::name('admin.')->prefix('admin/')->group(function (){
     //renter crud
     Route::name('renters.')->prefix('renters/')->group(function (){
         Route::get('/', [RenterController::class, 'index'])->name('index');
+        Route::get('/show/{renters}', [RenterController::class, 'show'])->name('show');
         Route::get('/create', [RenterController::class, 'create'])->name('create');
-        Route::get('/store', [RenterController::class, 'store'])->name('store');
-        Route::get('/edit', [RenterController::class, 'edit'])->name('edit');
-        Route::get('/edit', [RenterController::class, 'edit'])->name('edit');
-        Route::get('/destroy', [RenterController::class, 'destroy'])->name('destroy');
+        Route::post('/store', [RenterController::class, 'store'])->name('store');
+        Route::get('/edit/{renters}', [RenterController::class, 'edit'])->name('edit');
+        Route::get('/update/{renters}', [RenterController::class, 'update'])->name('update');
+        Route::get('/destroy/{renters}', [RenterController::class, 'destroy'])->name('destroy');
     });
 });
 

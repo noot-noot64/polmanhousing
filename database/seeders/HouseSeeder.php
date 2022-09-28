@@ -15,6 +15,8 @@ class HouseSeeder extends Seeder
      */
     public function run()
     {
+
+
         DB::table('houses')->insert([
             'address' => 'Tasveld 2',
             'city' => 'Tolkamer',
@@ -24,7 +26,7 @@ class HouseSeeder extends Seeder
             'accessible' => true,
             'condition_id' => '2',
             'created_at' => date('Y-m-d'),
-            'updated_at' => date('Y-m-d')
+            'updated_at' => date('Y-m-d'),
         ]);
     }
 }

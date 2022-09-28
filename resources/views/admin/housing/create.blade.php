@@ -23,13 +23,13 @@
                 <input id="address" name="address" class="form-control form-control-sm-10" style="width: 30%" placeholder="Adres">
             </div>
             <div class="form-group row">
-                <label for="address" class="col-sm-4 col-form-label">Woonplaats</label>
-                <input id="address" name="city" class="form-control form-control-sm-10" style="width: 30%" placeholder="Woonplaats">
+                <label for="city" class="col-sm-4 col-form-label">Woonplaats</label>
+                <input id="city" name="city" class="form-control form-control-sm-10" style="width: 30%" placeholder="Woonplaats">
             </div>
             <div class="form-group row">
-                <label for="address" class="col-sm-4 col-form-label">Postcode</label>
-                <input id="address" name="postalcode" class="form-control form-control-sm-10" style="width: 30%" placeholder="Postcode">
-                <small id="address-small" class="form-text text-muted">Postcode formaat: 1234AB</small>
+                <label for="postalcode" class="col-sm-4 col-form-label">Postcode</label>
+                <input id="postalcode" name="postalcode" class="form-control form-control-sm-10" style="width: 30%" placeholder="Postcode">
+                <small id="postalcode-small" class="form-text text-muted">Postcode formaat: 1234AB</small>
             </div>
             <div class="form-group row">
                 <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
