@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
        ([
            ConditionSeeder::class ,HouseSeeder::class, ExternSeeder::class, SubstructureSeeder::class,
            SuperStructureSeeder::class, FacadeSeeder::class, InteriorSeeder::class, SanitarySeeder::class,
-           InstallationSeeder::class, UserSeeder::class
+           InstallationSeeder::class, UserSeeder::class, RenterSeeder::class
        ]);
     }
 }

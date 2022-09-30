@@ -19,19 +19,19 @@
     <div class="card-body">
         {{-- Details content --}}
         <div class="form-group row">
-            <label for="firstname" class="col-sm-4 col-form-label">Voorletters</label>
-            <input id="firstname" name="firstname" class="form-control form-control-sm-10" style="width: 30%" placeholder="Voorletters">
+            <label for="initials" class="col-sm-4 col-form-label">Voorletters</label>
+            <input id="initials" name="initials" class="form-control form-control-sm-10" style="width: 30%" placeholder="Voorletters">
         </div>
         <div class="form-group row">
-            <label for="lastname" class="col-sm-4 col-form-label">Postcode</label>
+            <label for="lastname" class="col-sm-4 col-form-label">Achternaam</label>
             <input id="lastname" name="lastname" class="form-control form-control-sm-10" style="width: 30%" placeholder="Achternaam">
         </div>
         <div class="form-group row">
-            <label for="email" class="col-sm-4 col-form-label">Bouwjaar</label>
+            <label for="email" class="col-sm-4 col-form-label">Email</label>
             <input id="email" type="email" name="email" class="form-control form-control-sm-10" style="width: 30%" placeholder="Email">
         </div>
         <div class="form-group row">
-            <label for="phonenumber" class="col-sm-4 col-form-label">Oppervlakte</label>
+            <label for="phonenumber" class="col-sm-4 col-form-label">Telefoonnummer</label>
             <input id="phonenumber" name="phonenumber" class="form-control form-control-sm-10" style="width: 30%" placeholder="Telefoonnummer">
         </div>
         <div class="form-group row">

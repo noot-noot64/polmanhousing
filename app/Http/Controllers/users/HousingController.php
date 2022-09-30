@@ -29,11 +29,14 @@ class HousingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $houses = House::where('disabled', '=', 0)->orderBy('id', 'desc')->paginate(15);
+//        return view('index', compact('projects'));
+
         $housing = House::all()->where('disabled', '=', '0');
 
-        return view('admin/housing/housing')->with(['houses' => $housing]);
+        return view('admin/housing/housing')->with(['houses' => $housing, 'housing', compact('houses')]);
     }
     public function show($house)
     {

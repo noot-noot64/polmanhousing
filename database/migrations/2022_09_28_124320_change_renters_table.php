@@ -17,7 +17,8 @@ return new class extends Migration
             $table->dropColumn('firstname');
             $table->dropColumn('middlename');
             $table->text('initials');
-            $table->text('phonenumber');
+            $table->text('phonenumber')->nullable()->change();
+            $table->integer('house_id')->nullable()->change();
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->text('middlename');
             $table->dropColumn('initials');
             $table->dropColumn('phonenumber');
+            $table->dropColumn('house_id');
         });
     }
 };

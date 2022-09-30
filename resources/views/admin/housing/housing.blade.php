@@ -3,7 +3,7 @@
 @section('body')
 
 <div class="housings animated fadeInDown">
-    <h1>Woningen</h1>Zoeken:
+    <h1>Woningen</h1>
     <a class="btn btn-success" href="{{route('admin.housing.create')}}" style="float: right">Voeg huis toe +</a>
     <table class="table table-hover">
         <thead>

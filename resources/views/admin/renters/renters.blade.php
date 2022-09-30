@@ -7,8 +7,7 @@
     <table class="table table-hover">
         <thead>
         <tr>
-            <th scope="col"><strong>Voornaam</strong></th>
-            <th scope="col"><strong>Tussenvoegsels</strong></th>
+            <th scope="col"><strong>Voorletters</strong></th>
             <th scope="col"><strong>Lastname</strong></th>
             <th scope="col"><strong>Email</strong></th>
             <th scope="col"><strong>Telefoonnummer</strong></th>
@@ -21,8 +20,7 @@
         <tbody>
         @foreach($renters->sortBy('firstname') as $renter)
             <tr>
-                <td>{{$renter['firstname']}}</td>
-                <td>@if(isset($renter['middlename'])) {{$renter['middlename']}} @else - @endif</td>
+                <td>{{$renter['initials']}}</td>
                 <td>{{$renter['lastname']}}</td>
                 <td>{{$renter['email']}}</td>
                 <td>{{$renter['phonenumber']}}</td>

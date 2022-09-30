@@ -28,8 +28,23 @@ class RenterController extends Controller
             'houses' => $houses,
         ]);
     }
-    public function store(){
+    public function store(Request $request){
 
+        $validated = $request->validate([
+            "initials" => ['required', 'string'],
+            "lastname" => ['required', 'string'],
+            "email" => ['required', 'string'],
+            "phonenumber" => ['required', 'string'],
+            "house" => ['required', 'integer'],
+        ]);
+        Renter::create([
+            'initials' => $validated['initials'],
+            'lastname' => $validated['lastname'],
+            'email' => $validated['email'],
+            'phonenumber' => $validated['phonenumber'],
+            'house_id' => $validated['house'],
+        ]);
+        return redirect()->back()->with('success','Succesvol huurder toegevoegd');
     }
     public function edit(){
 
