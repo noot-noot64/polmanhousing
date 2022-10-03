@@ -46,10 +46,33 @@ class RenterController extends Controller
         ]);
         return redirect()->back()->with('success','Succesvol huurder toegevoegd');
     }
-    public function edit(){
-
+    public function edit($renter){
+        $current_renter = Renter::all()->where('id', $renter)->first();
+        $houses = House::all();
+        return view('admin/renters/edit')->with([
+           'renter' => $current_renter,
+            'houses' => $houses,
+        ]);
     }
-    public function update(){
+    public function update(Request $request, $renter){
+        $current_renter = Renter::all()->where('id', $renter)->first();
+
+        $validated = $request->validate([
+            'initials' => ['required', 'string'],
+            'lastname' => ['required', 'string'],
+            'email' => ['required', 'string'],
+            'phonenumber' => ['required', 'string'],
+            'house' => ['required', 'integer'],
+        ]);
+
+        $current_renter->update([
+            'initials' => $validated['initials'],
+            'lastname' => $validated['lastname'],
+            'email' => $validated['email'],
+            'phonenumber' => $validated['phonenumber'],
+            'house_id' => $validated['house'],
+        ]);
+        return redirect()->back()->with('success','Succesvol huurder bewerkt');
 
     }
     public function destroy(){

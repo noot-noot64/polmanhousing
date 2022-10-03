@@ -249,15 +249,17 @@ class RenterSeeder extends Seeder
             array("initials"=>"R.B.H. van ","lastname"=>"Wandelen","email"=>"rudolfovanwandelen@hotmail.com","phonenumber"=>"06-20076224"),
             array("initials"=>"W. P. ","lastname"=>"Bosveld","email"=>"","phonenumber"=>"026-3709909"),
         );
+        $i = 1;
         foreach($renters as $renter) {
             DB::table('renters')->insert([
                 'initials' => $renter['initials'],
                 'lastname' => $renter['lastname'],
                 'email' => $renter['email'],
                 'phonenumber' => $renter['phonenumber'],
-                'house_id' => 1,
+                'house_id' => $i,
                 'created_at' => Carbon::now(),
             ]);
+            $i++;
         }
 
     }

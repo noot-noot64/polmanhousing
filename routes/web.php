@@ -34,6 +34,7 @@ Route::name('admin.')->prefix('admin/')->group(function (){
     //housings crud
     Route::name('housing.')->prefix('housing/')->group(function (){
         Route::get('/', [HousingController::class, 'index'])->name('index');
+        Route::get('search', [HousingController::class, 'search'])->name('search');
         Route::get('/show/{housing}', [HousingController::class, 'show'])->name('show');
         Route::get('/create', [HousingController::class, 'create'])->name('create');
         Route::post('/store', [HousingController::class, 'store'])->name('store');

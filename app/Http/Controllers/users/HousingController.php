@@ -19,6 +19,7 @@ use App\Models\Sanitaries;
 use App\Models\Substructures;
 use App\Models\Superstructures;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 
 class HousingController extends Controller
@@ -28,15 +29,28 @@ class HousingController extends Controller
     {
         $this->middleware('auth');
     }
+    public function search(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->input('search');
+        $houses = House::query()
+            ->where('address', 'LIKE', "%{$search}%")
+            ->orWhere('city', 'LIKE', "%{$search}%")
+            ->orWhere('postalcode', 'LIKE', "%{$search}%")
+            ->paginate(15);
 
+        $houses->appends(['search' => $search]);
+
+        return view('admin/housing/housing')->with(['houses' => $houses]);
+    }
     public function index(Request $request)
     {
-        $houses = House::where('disabled', '=', 0)->orderBy('id', 'desc')->paginate(15);
+        $houses = House::where('disabled', '=', '0')->orderBy('id', 'asc')->paginate(15);
 //        return view('index', compact('projects'));
 
         $housing = House::all()->where('disabled', '=', '0');
 
-        return view('admin/housing/housing')->with(['houses' => $housing, 'housing', compact('houses')]);
+        return view('admin/housing/housing')->with(['houses' => $houses]);
     }
     public function show($house)
     {
@@ -146,7 +160,7 @@ class HousingController extends Controller
     }
     public function update(Request $request, $house)
     {
-//        dd($request);
+
         $current_house = House::all()->where('id', $house)->first();
         $validated = $request->validate([
             'address' => ['required', 'string'],
@@ -551,6 +565,7 @@ class HousingController extends Controller
                 ['house_id' => $house, 'comment' => $comment]
             );
         }
+
         return redirect()->back()->with('success','Succesvol huis bewerkt');
     }
     public function destroy()

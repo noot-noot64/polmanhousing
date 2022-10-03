@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('renters', function (Blueprint $table){
             $table->dropColumn('firstname');
             $table->dropColumn('middlename');
-            $table->text('initials');
+            $table->text('initials')->after('id');
             $table->text('phonenumber')->nullable()->change();
             $table->integer('house_id')->nullable()->change();
         });

@@ -17,7 +17,7 @@
 
     <form method="get" action="{{route('admin.housing.update', $house['id'])}}">
         @csrf
-        <input type="submit" class="btn btn-primary" value="Bewerk"><br><br>
+        <input type="submit" class="btn btn-success" value="Bewerk"><br><br>
         <div class="accordion" id="accordionExample">
             {{--      DETAILS CONDITIES      --}}
             <div class="card" style="background-color: lightgrey">
@@ -336,7 +336,7 @@
                 </div>
             </div>
         </div>
-        <input type="submit" class="btn btn-primary" value="Bewerk">
+        <input type="submit" class="btn btn-success" value="Bewerk">
     </form>
 
 

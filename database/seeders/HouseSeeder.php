@@ -256,10 +256,10 @@ class HouseSeeder extends Seeder
                 'address' => $house['address'],
                 'city' => $house['city'],
                 'postalcode' => $house['postalcode'],
-                'buildyear' => '2000',
-                'surface' => '220',
+                'buildyear' => rand(1990,2005),
+                'surface' => rand(180,235),
                 'accessible' => true,
-                'condition_id' => '1',
+                'condition_id' => rand(1,10),
                 'created_at' => Carbon::now(),
             ]);
         }
