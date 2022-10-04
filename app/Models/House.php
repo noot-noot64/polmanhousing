@@ -22,6 +22,7 @@ class House extends Model
         'surface',
         'accessible',
         'condition_id',
+        'disabled',
     ];
 
     public function conditions(): belongsTo

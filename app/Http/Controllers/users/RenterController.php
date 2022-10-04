@@ -13,7 +13,20 @@ class RenterController extends Controller
     {
         $this->middleware('auth');
     }
+    public function search(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->input('search');
+        $houses = House::query()
+            ->where('initials', 'LIKE', "%{$search}%")
+            ->orWhere('lastname', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->paginate(15);
 
+        $houses->appends(['search' => $search]);
+
+        return view('admin/housing/housing')->with(['houses' => $houses]);
+    }
     public function index(){
         $renters = Renter::all();
         return view('admin/renters/renters')->with(['renters' => $renters]);

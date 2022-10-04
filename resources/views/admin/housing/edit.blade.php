@@ -47,6 +47,10 @@
                         </div>
                         <div class="form-group row">
                             <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
+                            <input id="buildyear" name="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($renters->first()->initials)){{$renters->first()->initials. ' '. $renters->first()->lastname}}@endif">
+                        </div>
+                        <div class="form-group row">
+                            <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
                             <input id="buildyear" type="number" max="{{date('Y')}}" min="1000" name="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($house->buildyear)){{$house->buildyear}}@endif">
                         </div>
                         <div class="form-group row">
@@ -84,8 +88,6 @@
 
                                 @endforeach
                             </select>
-{{--                            <input id="condition" class="form-control form-control-sm-10" style="width: 30%" placeholder="Conditie"--}}
-{{--                                   value="@if(isset($house->condition_id)){{$house->conditions()->first()->name}}@endif">--}}
                         </div>
                     </div>
                 </div>
