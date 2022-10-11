@@ -31,9 +31,15 @@
                 <label for="phonenumber" class="col-sm-4 col-form-label">Telefoonnummer</label>
                 <input id="phonenumber" name="phonenumber" class="form-control form-control-sm-10" style="width: 30%" placeholder="Telefoonnummer" value="@if(isset($renter->phonenumber)){{$renter->phonenumber}}@endif">
             </div>
+
+            <script>
+                $(function () {
+                    $("select").select2();
+                });
+            </script>
             <div class="form-group row">
                 <label for="house" class="col-sm-4 col-form-label">Huis</label>
-                <select name="house" id="house" class="form-control form-control-sm-10" style="width: 30%">
+                <select name="house" id="house" class="select2 form-control form-control-sm-10"  style="width: 30%">
                     @foreach($houses as $house)
                         <option value="{{$house->id}}"
                             @if($house->id == $renter->house_id)

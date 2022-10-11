@@ -21,22 +21,26 @@
             <th scope="col"><strong>Conditie</strong></th>
             <th></th>
             <th></th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
+        <style>
+            td a{
+                display: block;
+            }
+        </style>
         @foreach($houses as $house)
 
             <tr>
-                <td>{{$house['address']}}</td>
-                <td>{{$house['postalcode']}}</td>
-                <td>{{$house['buildyear']}}</td>
-                <td>{{$house['surface']}}mm²</td>
-                <td>@if($house['accessible'] == 1) Ja @else Nee @endif</td>
-                <td>{{$house->conditions()->first()->name}}</td>
-                <td><a href="{{route('admin.housing.edit', $house['id'])}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                <td><a href="{{route('admin.housing.show', $house['id'])}}"><i class="fa-solid fa-gear"></i></a></td>
-                <td><a href=""><i class="fa-solid fa-trash"></i></a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">{{$house['address']}}</a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">{{$house['postalcode']}}</a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">{{$house['buildyear']}}</a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">{{$house['surface']}}mm²</a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">@if($house['accessible'] == 1) Ja @else Nee @endif</a></td>
+                <td><a href="{{route('admin.housing.edit', $house['id'])}}">{{$house->conditions()->first()->name}}</a></td>
+{{--                <td><a href="{{route('admin.housing.edit', $house['id'])}}"><i class="fa-solid fa-pen-to-square"></i></a></td>--}}
+                <td><a href="{{route('admin.housing.show', $house['id'])}}" title="Informatie"><i class="fa-solid fa-circle-info"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-trash" title="Verwijder"></i></a></td>
             </tr>
         @endforeach
         </tbody>
