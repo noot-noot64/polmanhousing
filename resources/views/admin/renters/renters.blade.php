@@ -7,7 +7,7 @@
     <form action="{{route('admin.renters.search')}}" method="get" role="search">
         @csrf
         <input type="text" name="search" required/>
-        <button type="submit">Search</button>
+        <button type="submit">Zoeken</button>
     </form>
     <table class="table table-hover">
         <thead>

@@ -46,8 +46,8 @@
                             <small id="address-small" class="form-text text-muted">Postcode formaat: 1234AB</small>
                         </div>
                         <div class="form-group row">
-                            <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
-                            <input id="buildyear" name="buildyear" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($renters->first()->initials)){{$renters->first()->initials. ' '. $renters->first()->lastname}}@endif">
+                            <label for="initials" class="col-sm-4 col-form-label">Voorletters</label>
+                            <input id="initials" class="form-control form-control-sm-10" style="width: 30%" placeholder="Bouwjaar" value="@if(isset($renters->first()->initials)){{$renters->first()->initials. ' '. $renters->first()->lastname}}@endif" readonly>
                         </div>
                         <div class="form-group row">
                             <label for="buildyear" class="col-sm-4 col-form-label">Bouwjaar</label>
