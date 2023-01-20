@@ -1,6 +1,6 @@
 
 @import "guest.css";
-
+@import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css);
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 .page-link{

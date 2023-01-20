@@ -46,6 +46,7 @@ Route::name('admin.')->prefix('admin/')->group(function (){
     //renter crud
     Route::name('renters.')->prefix('renters/')->group(function (){
         Route::get('/', [RenterController::class, 'index'])->name('index');
+        Route::get('search', [RenterController::class, 'search'])->name('search');
         Route::get('/show/{renters}', [RenterController::class, 'show'])->name('show');
         Route::get('/create', [RenterController::class, 'create'])->name('create');
         Route::post('/store', [RenterController::class, 'store'])->name('store');

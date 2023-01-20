@@ -17,22 +17,25 @@ class RenterController extends Controller
     {
         // Get the search value from the request
         $search = $request->input('search');
-        $houses = House::query()
+        $renters = Renter::query()
             ->where('initials', 'LIKE', "%{$search}%")
             ->orWhere('lastname', 'LIKE', "%{$search}%")
             ->orWhere('email', 'LIKE', "%{$search}%")
             ->paginate(15);
 
-        $houses->appends(['search' => $search]);
+        $renters->appends(['search' => $search]);
 
-        return view('admin/housing/housing')->with(['houses' => $houses]);
-    }
-    public function index(){
-        $renters = Renter::all();
         return view('admin/renters/renters')->with(['renters' => $renters]);
     }
-    public function show(){
-
+    public function index(){
+        $renters = Renter::paginate(15);
+        return view('admin/renters/renters')->with(['renters' => $renters]);
+    }
+    public function show($renter){
+        $current_renter = Renter::all()->where('id', $renter)->first();
+        return view('admin/renters/show')->with([
+           'renter' => $current_renter,
+        ]);
     }
     public function create(){
         $houses = House::all();
